@@ -1,0 +1,386 @@
+.hide {
+  display: none;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+textarea {
+  outline: none;
+  min-height: 30px;
+  min-width: 50px;
+  z-index: 3;
+}
+
+#app {
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+}
+
+#menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.mainMenuButton {
+  background-color: #8d57dd;
+
+  margin: 5px;
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  line-height: 250%;
+  user-select: none;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.active {
+  background-color: #55b84c;
+  border: 1px solid #5e52b8;
+  transform: translateY(1px);
+}
+
+.mainMenuButton:hover {
+  background-color: #b6b84c;
+}
+
+.mainMenuButton:active {
+  transform: translateY(1px);
+}
+
+.calcInput {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  margin: 20px;
+}
+
+.calcInput textarea {
+  text-align: center;
+  height: 50px;
+  margin: 10px;
+  outline: none;
+}
+
+.resultContainer > textarea,
+.polyResult {
+  text-align: center;
+  font-size: 20px;
+  height: 70px;
+  margin: 10px;
+}
+
+.newPoly {
+  z-index: 1;
+}
+
+.result,
+.polyResult {
+  background-color: #bebeb2;
+  z-index: 1;
+}
+
+.calcButtons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 80px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3px;
+  margin-bottom: 0;
+}
+
+.calcButtons > div {
+  width: 100%;
+  margin-top: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.operand,
+.polyOperand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 100px;
+  background-color: #f3f3f2;
+  margin: 0 10px 10px;
+  user-select: none;
+  transition: 0.1s;
+}
+
+.operand:hover,
+.polyOperand:hover,
+.resultButton:hover {
+  cursor: pointer;
+  background-color: #828201;
+}
+
+.operand:active,
+.polyOperand:active,
+.resultButton:active {
+  transform: translateY(1px);
+}
+
+.resultContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.resultButton {
+  height: 20px;
+  width: 30px;
+  margin: 10px;
+  background-color: #fefefe;
+  text-align: center;
+}
+
+#polyomialCalculator,
+#calculator {
+  background-color: #fff9f1;
+}
+
+#canvas2D,
+#canvas3D {
+  cursor: grab;
+  border: 1px solid rgb(11, 8, 8);
+}
+
+#canvas2D:active,
+#canvas3D:active {
+  cursor: grabbing;
+}
+
+#graph2D,
+#graph3D {
+  max-height: 800px;
+}
+
+.funcs-сontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+.funcBlock input::-webkit-outer-spin-button,
+.funcBlock input::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+.funcBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+  width: 80%;
+}
+
+.funcBlock input {
+  margin: 1px;
+  text-align: center;
+  outline: none;
+}
+
+.container,
+.container3D {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(248, 248, 248);
+  width: 0;
+  height: 800px;
+  left: 1px;
+  top: -806px;
+  border-top-left-radius: 17px;
+  border-bottom-left-radius: 18px;
+  transition: 1s;
+}
+
+.container > .block {
+  width: 100%;
+  max-height: 100%;
+}
+
+.containerActive {
+  width: 500px;
+}
+
+.menuGraphButton,
+.menuGraph3DButton {
+  position: absolute;
+  top: 0;
+  right: -30px;
+  height: 30px;
+  width: 30px;
+  background-color: rgb(21, 168, 197);
+  cursor: pointer;
+}
+
+.funcMenu,
+.figuresMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-height: 100%;
+}
+
+.deleteFunc {
+  width: 15px;
+  height: 15px;
+  background-color: rgb(26, 228, 228);
+  text-align: center;
+  line-height: 15px;
+  user-select: none;
+  border-radius: 5px;
+}
+
+.deleteFunc:hover {
+  background-color: #da4f4f;
+}
+
+.addFunction,
+.addFigure {
+  width: 90px;
+  height: 20px;
+  margin-top: 5px;
+  text-align: center;
+  background-color: rgb(43, 126, 126);
+  border-radius: 5px;
+  user-select: none;
+  transition: 0.1s;
+}
+
+.addFunction:hover,
+.addFigure:hover {
+  background-color: #d0f5f5;
+  cursor: pointer;
+}
+
+.addFunction:active,
+.addFigure:active {
+  transform: translateY(2px);
+}
+
+.deleteFunc:hover {
+  cursor: pointer;
+}
+
+.switch-btn {
+  display: inline-block;
+  width: 30px;
+  height: 15px;
+  border-radius: 19px;
+  background: #bfbfbf;
+  z-index: 0;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition-duration: 300ms;
+}
+
+.switch-btn::after {
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 17px;
+  background: #fff;
+  left: 0;
+  transition-duration: 300ms;
+  position: absolute;
+  z-index: 1;
+}
+
+.switch-on {
+  background: #ecfbf4;
+}
+
+.switch-on::after {
+  left: 15px;
+}
+
+.inputColor {
+  border-radius: 50%;
+  background-color: transparent;
+  height: 25px;
+  width: 26px;
+  border: none;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.inputColor::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.inputColor::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
+.funcBlock > .inputA,
+.funcBlock > .inputB {
+  width: 30px;
+}
+
+.inputWidth,
+.inputFunc {
+  width: 60px;
+}
+
+.funcBlock > .inputA,
+.funcBlock > .inputB,
+.inputWidth,
+.inputFunc {
+  background-color: white;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
+#figuresList {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  width: 130px;
+  text-align: center;
+  outline: none;
+}
+
+#figuresList > div {
+  background-color: #efefec;
+  margin: 2px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+#figuresList > div:hover {
+  background-color: #f8f8f8;
+}
+
+#figuresList > div:active {
+  transform: translateY(1px);
+}
