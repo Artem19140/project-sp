@@ -64,9 +64,9 @@ class EllipticalParaboloid extends Figure {
           this.color
         );
         this.polygons[k].color = {
-          r: Math.trunc(rgb),
+          r: 255,
           b: Math.trunc(rgb),
-          g: 255,
+          g: Math.trunc(rgb),
         };
         k += 1;
       }
@@ -81,9 +81,9 @@ class EllipticalParaboloid extends Figure {
         this.color
       );
       this.polygons[k].color = {
-        r: Math.trunc(rgb),
+        r: 255,
         b: Math.trunc(rgb),
-        g: 255,
+        g: Math.trunc(rgb),
       };
       k += 1;
     }

@@ -1,6 +1,6 @@
 class DoubleCavityHyperboloid extends Figure {
   constructor({
-    color = "#40cac7",
+    color = "#ff0000",
     centre,
     count = 20,
     focusOx = 10,
@@ -94,57 +94,74 @@ class DoubleCavityHyperboloid extends Figure {
   }
 
   generatePolygons() {
+    let k = 0;
+    let rgb = 0;
     const sqrCount = Math.pow(this.count, 2);
     for (let i = 0; i < this.count - 1; i++) {
+      rgb = (i * 255) / this.count;
       for (let j = 0; j < this.count - 1; j++) {
-        this.polygons.push(
-          new Polygon(
-            [
-              i * this.count + j,
-              (i + 1) * this.count + j,
-              (i + 1) * this.count + j + 1,
-              i * this.count + j + 1,
-            ],
-            this.color
-          )
+        this.polygons[k] = new Polygon(
+          [
+            i * this.count + j,
+            (i + 1) * this.count + j,
+            (i + 1) * this.count + j + 1,
+            i * this.count + j + 1,
+          ],
+          this.color
         );
+        this.polygons[k].color = {
+          r: 255,
+          b: Math.trunc(rgb),
+          g: Math.trunc(rgb),
+        };
 
-        this.polygons.push(
-          new Polygon(
-            [
-              i * this.count + sqrCount + j,
-              (i + 1) * this.count + sqrCount + j,
-              (i + 1) * this.count + sqrCount + j + 1,
-              i * this.count + sqrCount + j + 1,
-            ],
-            this.color
-          )
+        this.polygons[k + 1] = new Polygon(
+          [
+            i * this.count + sqrCount + j,
+            (i + 1) * this.count + sqrCount + j,
+            (i + 1) * this.count + sqrCount + j + 1,
+            i * this.count + sqrCount + j + 1,
+          ],
+          this.color
         );
+        this.polygons[k + 1].color = {
+          r: 255,
+          b: Math.trunc(rgb),
+          g: Math.trunc(rgb),
+        };
+        k += 2;
       }
 
-      this.polygons.push(
-        new Polygon(
-          [
-            i * this.count,
-            (i + 1) * this.count - 1,
-            (i + 2) * this.count - 1,
-            (i + 1) * this.count,
-          ],
-          this.color
-        )
+      this.polygons[k] = new Polygon(
+        [
+          i * this.count,
+          (i + 1) * this.count - 1,
+          (i + 2) * this.count - 1,
+          (i + 1) * this.count,
+        ],
+        this.color
       );
+      this.polygons[k].color = {
+        r: 255,
+        b: Math.trunc(rgb),
+        g: Math.trunc(rgb),
+      };
 
-      this.polygons.push(
-        new Polygon(
-          [
-            i * this.count + sqrCount,
-            (i + 1) * this.count + sqrCount - 1,
-            (i + 2) * this.count + sqrCount - 1,
-            (i + 1) * this.count + sqrCount,
-          ],
-          this.color
-        )
+      this.polygons[k + 1] = new Polygon(
+        [
+          i * this.count + sqrCount,
+          (i + 1) * this.count + sqrCount - 1,
+          (i + 2) * this.count + sqrCount - 1,
+          (i + 1) * this.count + sqrCount,
+        ],
+        this.color
       );
+      this.polygons[k + 1].color = {
+        r: 255,
+        b: Math.trunc(rgb),
+        g: Math.trunc(rgb),
+      };
+      k += 2;
     }
   }
 }

@@ -1,6 +1,6 @@
 class HyperbolicCylinder extends Figure {
   constructor({
-    color = "#41a7b4",
+    color = "#аа0000",
     centre,
     count = 15,
     focusOx = 5,
@@ -80,33 +80,42 @@ class HyperbolicCylinder extends Figure {
   }
 
   generatePolygons() {
+    let k = 0;
+    let rgb = 0;
     const sqrCount = Math.pow(this.count, 2);
 
     for (let i = 0; i < this.count - 1; i++) {
+      rgb = (i * 255) / this.count;
       for (let j = 0; j < this.count - 1; j++) {
-        this.polygons.push(
-          new Polygon(
-            [
-              i * this.count + j,
-              (i + 1) * this.count + j,
-              (i + 1) * this.count + j + 1,
-              i * this.count + j + 1,
-            ],
-            this.color
-          )
+        this.polygons[k] = new Polygon(
+          [
+            i * this.count + j,
+            (i + 1) * this.count + j,
+            (i + 1) * this.count + j + 1,
+            i * this.count + j + 1,
+          ],
+          this.color
         );
-
-        this.polygons.push(
-          new Polygon(
-            [
-              i * this.count + sqrCount + j,
-              (i + 1) * this.count + sqrCount + j,
-              (i + 1) * this.count + sqrCount + j + 1,
-              i * this.count + sqrCount + j + 1,
-            ],
-            this.color
-          )
+        this.polygons[k].color = {
+          r: 255,
+          b: Math.trunc(rgb),
+          g: Math.trunc(rgb),
+        };
+        this.polygons[k + 1] = new Polygon(
+          [
+            i * this.count + sqrCount + j,
+            (i + 1) * this.count + sqrCount + j,
+            (i + 1) * this.count + sqrCount + j + 1,
+            i * this.count + sqrCount + j + 1,
+          ],
+          this.color
         );
+        this.polygons[k + 1].color = {
+          r: 255,
+          b: Math.trunc(rgb),
+          g: Math.trunc(rgb),
+        };
+        k += 2;
       }
     }
   }
