@@ -4,7 +4,7 @@ class Ellipsoid extends Figure {
     focusOy = 15,
     focusOz = 20,
     count = 20,
-    color = "#225533",
+    color = "#ff0000",
     centre,
   }) {
     super({ color, centre });
@@ -56,8 +56,10 @@ class Ellipsoid extends Figure {
   }
 
   generatePolygons() {
+    let k = 0;
     for (let i = 0; i < this.count - 1; i++) {
       for (let j = 0; j < this.count - 1; j++) {
+        let rgb = (i * 255) / 10;
         this.polygons.push(
           new Polygon(
             [
@@ -69,6 +71,12 @@ class Ellipsoid extends Figure {
             this.color
           )
         );
+        this.polygons[k].color = {
+          r: Math.trunc(rgb),
+          b: Math.trunc(rgb),
+          g: 255,
+        };
+        k += 1;
       }
 
       this.polygons.push(

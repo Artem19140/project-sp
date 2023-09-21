@@ -1,5 +1,5 @@
 class Sphere extends Figure {
-  constructor({ radius = 10, count = 20, color = "#532190", centre }) {
+  constructor({ radius = 10, count = 20, color = "#ff0000", centre }) {
     super({ color, centre });
 
     this.radius = radius;
@@ -47,8 +47,10 @@ class Sphere extends Figure {
   }
 
   generatePolygons() {
+    let k = 0;
     for (let i = 0; i < this.count - 1; i++) {
       for (let j = 0; j < this.count - 1; j++) {
+        let rgb = (i * 255) / 10;
         this.polygons.push(
           new Polygon(
             [
@@ -60,6 +62,12 @@ class Sphere extends Figure {
             this.color
           )
         );
+        this.polygons[k].color = {
+          r: Math.trunc(rgb),
+          b: Math.trunc(rgb),
+          g: 255,
+        };
+        k += 1;
       }
 
       this.polygons.push(
