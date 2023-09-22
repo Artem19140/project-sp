@@ -108,7 +108,7 @@ class Graph3DComponent extends Component {
       });
       this.math3D.sortByArtistAlgoritm(polygons);
 
-      this.drawPolygons(polygons);
+      this.drawPolygons(polygons, this.scene[0]);
     }
 
     if (this.showEdges) {
@@ -156,7 +156,7 @@ class Graph3DComponent extends Component {
     });
   }
 
-  drawPolygons(polygons) {
+  drawPolygons(polygons, figure) {
     polygons.forEach((polygon) => {
       const points = [];
 
@@ -170,8 +170,11 @@ class Graph3DComponent extends Component {
         this.scene,
         this.LIGHT
       );
-      if (figure.constructor.name == "SingleCavityHyperboloid") {
+      if (figure.constructor.name == "Ellipsoid") {
         // область без света
+        //
+        //
+        //
         if (polygon.x > figure.count * 0.2 || polygon.y > figure.count * 0.5) {
           const lumen = this.math3D.calcIllumination(
             polygon.distance,

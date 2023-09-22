@@ -94,57 +94,40 @@ class DoubleCavityHyperboloid extends Figure {
   }
 
   generatePolygons() {
-    const sqrCount = Math.pow(this.count, 2);
-    for (let i = 0; i < this.count - 1; i++) {
-      for (let j = 0; j < this.count - 1; j++) {
-        this.polygons.push(
-          new Polygon(
-            [
-              i * this.count + j,
-              (i + 1) * this.count + j,
-              (i + 1) * this.count + j + 1,
-              i * this.count + j + 1,
-            ],
-            this.color
-          )
-        );
+    let whiteCol = true;
+    for (let i = 0; i < (this.count - 1) / 2; i++) {
+      if (i !== this.count / 2 - 1) {
+        let whiteRow = whiteCol;
+        whiteCol = i % 3 ? whiteCol : !whiteCol;
+        for (let j = 0; j < this.count - 1; j++) {
+          if ((j + 1) % 3 || (i + 1) % 3) {
+            this.polygons.push(
+              new Polygon(
+                [
+                  i * this.count + j,
+                  (i + 1) * this.count + j,
+                  (i + 1) * this.count + j + 1,
+                  i * this.count + j + 1,
+                ],
+                whiteRow ? "#ffffff" : "#000000"
+              )
+            );
+            whiteRow = j % 3 ? whiteRow : !whiteRow;
+          }
+        }
 
         this.polygons.push(
           new Polygon(
             [
-              i * this.count + sqrCount + j,
-              (i + 1) * this.count + sqrCount + j,
-              (i + 1) * this.count + sqrCount + j + 1,
-              i * this.count + sqrCount + j + 1,
+              i * this.count,
+              (i + 1) * this.count - 1,
+              (i + 2) * this.count - 1,
+              (i + 1) * this.count,
             ],
-            this.color
+            whiteRow ? "#ffffff" : "#000000"
           )
         );
       }
-
-      this.polygons.push(
-        new Polygon(
-          [
-            i * this.count,
-            (i + 1) * this.count - 1,
-            (i + 2) * this.count - 1,
-            (i + 1) * this.count,
-          ],
-          this.color
-        )
-      );
-
-      this.polygons.push(
-        new Polygon(
-          [
-            i * this.count + sqrCount,
-            (i + 1) * this.count + sqrCount - 1,
-            (i + 2) * this.count + sqrCount - 1,
-            (i + 1) * this.count + sqrCount,
-          ],
-          this.color
-        )
-      );
     }
   }
 }

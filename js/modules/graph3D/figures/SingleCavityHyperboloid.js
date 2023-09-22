@@ -1,15 +1,13 @@
 class SingleCavityHyperboloid extends Figure {
   constructor({
     color = "#129e25",
-    x,
-    y,
     centre,
     count = 20,
     focusOx = 5,
     focusOy = 10,
     focusOz = 5,
   }) {
-    super({ color, x, y, centre });
+    super({ color, centre });
     this.count = count;
     this.focusOx = focusOx;
     this.focusOy = focusOy;
@@ -58,35 +56,32 @@ class SingleCavityHyperboloid extends Figure {
   }
 
   generatePolygons() {
-    let k = 0;
     for (let i = 0; i < this.count - 1; i++) {
       for (let j = 0; j < this.count - 1; j++) {
-        this.polygons[k] = new Polygon(
-          [
-            i * this.count + j,
-            (i + 1) * this.count + j,
-            (i + 1) * this.count + j + 1,
-            i * this.count + j + 1,
-          ],
-          this.color,
-          i,
-          j
+        this.polygons.push(
+          new Polygon(
+            [
+              i * this.count + j,
+              (i + 1) * this.count + j,
+              (i + 1) * this.count + j + 1,
+              i * this.count + j + 1,
+            ],
+            this.color
+          )
         );
-        k++;
       }
 
-      this.polygons[k] = new Polygon(
-        [
-          i * this.count,
-          (i + 1) * this.count - 1,
-          (i + 2) * this.count - 1,
-          (i + 1) * this.count,
-        ],
-        this.color,
-        i,
-        this.count - 1
+      this.polygons.push(
+        new Polygon(
+          [
+            i * this.count,
+            (i + 1) * this.count - 1,
+            (i + 2) * this.count - 1,
+            (i + 1) * this.count,
+          ],
+          this.color
+        )
       );
-      k++;
     }
   }
 }
