@@ -82,24 +82,6 @@ class ParabolicCylinder extends Figure {
     const stepIndex = Math.pow(this.count, 2);
     for (let i = 0; i < this.count - 1; i++) {
       for (let j = 0; j < this.count - 1; j++) {
-        this.color = "0000ff";
-        if (
-          (i > 0 && i % 2 == 1 && j > 0 && j < (this.count - 1) / 2) ||
-          (i > 0 && i % 4 == 0 && j == 1) ||
-          (i > 0 &&
-            i % 4 == 2 &&
-            j == (this.count - 2) / 2 &&
-            i < this.count - 2) ||
-          (j > this.count / 2 && j % 2 == 1 && i > 0 && i < this.count - 2) ||
-          (i == this.count - 3 && j == this.count / 2) ||
-          (i == 1 && j > this.count / 2 && j % 4 == 0 && j < this.count - 2) ||
-          (i == this.count - 3 &&
-            j > this.count / 2 &&
-            j % 7 == 0 &&
-            j < this.count - 2)
-        ) {
-          this.color = "ff0000";
-        }
         this.polygons.push(
           new Polygon(
             [
