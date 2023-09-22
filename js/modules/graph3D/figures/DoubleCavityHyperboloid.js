@@ -2,7 +2,7 @@ class DoubleCavityHyperboloid extends Figure {
   constructor({
     color = "#40cac7",
     centre,
-    count = 20,
+    count = 24,
     focusOx = 10,
     focusOy = 10,
     focusOz = 10,
