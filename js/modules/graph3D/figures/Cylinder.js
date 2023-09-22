@@ -46,43 +46,32 @@ class Cylinder extends Figure {
   }
 
   generatePolygons() {
-    let k = 0;
-    let rgb = 0;
     for (let i = 0; i < this.count - 1; i++) {
-      rgb = (i * 255) / this.count;
       for (let j = 0; j < this.count - 1; j++) {
-        this.polygons[k] = new Polygon(
-          [
-            i * this.count + j,
-            (i + 1) * this.count + j,
-            (i + 1) * this.count + j + 1,
-            i * this.count + j + 1,
-          ],
-          this.color
+        this.polygons.push(
+          new Polygon(
+            [
+              i * this.count + j,
+              (i + 1) * this.count + j,
+              (i + 1) * this.count + j + 1,
+              i * this.count + j + 1,
+            ],
+            this.color
+          )
         );
-        this.polygons[k].color = {
-          r: 255,
-          b: Math.trunc(rgb),
-          g: Math.trunc(rgb),
-        };
-        k += 1;
       }
 
-      this.polygons[k] = new Polygon(
-        [
-          i * this.count,
-          (i + 1) * this.count - 1,
-          (i + 2) * this.count - 1,
-          (i + 1) * this.count,
-        ],
-        this.color
+      this.polygons.push(
+        new Polygon(
+          [
+            i * this.count,
+            (i + 1) * this.count - 1,
+            (i + 2) * this.count - 1,
+            (i + 1) * this.count,
+          ],
+          this.color
+        )
       );
-      this.polygons[k].color = {
-        r: 255,
-        b: Math.trunc(rgb),
-        g: Math.trunc(rgb),
-      };
-      k += 1;
     }
   }
 }

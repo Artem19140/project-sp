@@ -1,6 +1,6 @@
 class ParabolicCylinder extends Figure {
   constructor({
-    color = "#аа0000",
+    color = "#e3b6d4",
     centre,
     count = 20,
     height = 10,
@@ -79,42 +79,50 @@ class ParabolicCylinder extends Figure {
   }
 
   generatePolygons() {
-    let k = 0;
-    let rgb = 0;
     const stepIndex = Math.pow(this.count, 2);
     for (let i = 0; i < this.count - 1; i++) {
-      rgb = (i * 255) / this.count;
       for (let j = 0; j < this.count - 1; j++) {
-        this.polygons[k] = new Polygon(
-          [
-            i * this.count + j,
-            (i + 1) * this.count + j,
-            (i + 1) * this.count + j + 1,
-            i * this.count + j + 1,
-          ],
-          this.color
+        this.color = "0000ff";
+        if (
+          (i > 0 && i % 2 == 1 && j > 0 && j < (this.count - 1) / 2) ||
+          (i > 0 && i % 4 == 0 && j == 1) ||
+          (i > 0 &&
+            i % 4 == 2 &&
+            j == (this.count - 2) / 2 &&
+            i < this.count - 2) ||
+          (j > this.count / 2 && j % 2 == 1 && i > 0 && i < this.count - 2) ||
+          (i == this.count - 3 && j == this.count / 2) ||
+          (i == 1 && j > this.count / 2 && j % 4 == 0 && j < this.count - 2) ||
+          (i == this.count - 3 &&
+            j > this.count / 2 &&
+            j % 7 == 0 &&
+            j < this.count - 2)
+        ) {
+          this.color = "ff0000";
+        }
+        this.polygons.push(
+          new Polygon(
+            [
+              i * this.count + j,
+              (i + 1) * this.count + j,
+              (i + 1) * this.count + j + 1,
+              i * this.count + j + 1,
+            ],
+            this.color
+          )
         );
-        this.polygons[k].color = {
-          r: 255,
-          b: Math.trunc(rgb),
-          g: Math.trunc(rgb),
-        };
 
-        this.polygons[k + 1] = new Polygon(
-          [
-            i * this.count + stepIndex + j,
-            (i + 1) * this.count + stepIndex + j,
-            (i + 1) * this.count + stepIndex + j + 1,
-            i * this.count + stepIndex + j + 1,
-          ],
-          this.color
+        this.polygons.push(
+          new Polygon(
+            [
+              i * this.count + stepIndex + j,
+              (i + 1) * this.count + stepIndex + j,
+              (i + 1) * this.count + stepIndex + j + 1,
+              i * this.count + stepIndex + j + 1,
+            ],
+            this.color
+          )
         );
-        this.polygons[k + 1].color = {
-          r: 255,
-          b: Math.trunc(rgb),
-          g: Math.trunc(rgb),
-        };
-        k += 2;
       }
     }
   }
