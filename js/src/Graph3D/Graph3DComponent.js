@@ -170,13 +170,26 @@ class Graph3DComponent extends Component {
         this.scene,
         this.LIGHT
       );
-      const lumen = this.math3D.calcIllumination(
-        polygon.distance,
-        this.LIGHT.lumen * (isShadow ? dark : 1)
-      );
-      r = Math.round(r * lumen);
-      g = Math.round(g * lumen);
-      b = Math.round(b * lumen);
+      if (figure.constructor.name == "SingleCavityHyperboloid") {
+        // область без света
+        if (polygon.x > figure.count * 0.2 || polygon.y > figure.count * 0.5) {
+          const lumen = this.math3D.calcIllumination(
+            polygon.distance,
+            this.LIGHT.lumen * (isShadow ? dark : 1)
+          );
+          r = Math.round(r * lumen);
+          g = Math.round(g * lumen);
+          b = Math.round(b * lumen);
+        }
+      } else {
+        const lumen = this.math3D.calcIllumination(
+          polygon.distance,
+          this.LIGHT.lumen * (isShadow ? dark : 1)
+        );
+        r = Math.round(r * lumen);
+        g = Math.round(g * lumen);
+        b = Math.round(b * lumen);
+      }
 
       this.canvas.polygon(
         points.map((point) => {
